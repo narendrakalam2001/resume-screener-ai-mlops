@@ -28,16 +28,7 @@ env/
 data/Resume.csv
 data/UpdatedResumeDataSet.csv
 data/*.zip
-
-# data/sample_resumes.csv → NOT ignored, pushed for HR to test
-
-# ── Model artifacts — large .joblib files only ───────────────
-resume_models/*.joblib
-
-# All small metadata files pushed (API + Dashboard need them)
-# latest_model.json, challenger_log.json, model_card_*.json,
-# model_experiment_results.csv, feature_drift_report.csv,
-# monitor_scores.csv → ALL pushed
+# data/sample_resumes.csv → pushed for HR to test
 
 # ── MLflow ───────────────────────────────────────────────────
 mlruns/
