@@ -1,0 +1,342 @@
+<svg width="1100" viewBox="0 0 1100 960" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M2 2L8 5L2 8" fill="none" stroke="#4a7fd4" stroke-width="1.5"/>
+    </marker>
+    <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M2 2L8 5L2 8" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+    </marker>
+    <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M2 2L8 5L2 8" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+    </marker>
+    <marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M2 2L8 5L2 8" fill="none" stroke="#6b7280" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- TITLE -->
+  <text x="550" y="28" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">Resume Screener AI — System Architecture</text>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LAYER 1 — DATA LAYER  (blue)
+  ════════════════════════════════════════════════════════ -->
+  <rect x="10" y="42" width="1080" height="108" rx="8" fill="#0d1b4b" opacity="0.93"/>
+  <text x="18" y="58" font-size="10" font-weight="700" fill="#7eb3f7" letter-spacing="1.5">DATA LAYER</text>
+
+  <!-- Kaggle Resume Dataset -->
+  <rect x="30" y="64" width="185" height="74" rx="6" fill="#1a3a7a" stroke="#4a7fd4" stroke-width="0.8"/>
+  <text x="122" y="88" text-anchor="middle" font-size="12" font-weight="600" fill="#e8f0fe">Kaggle Resume Dataset</text>
+  <text x="122" y="104" text-anchor="middle" font-size="10" fill="#93b8f7">Resume.csv (56 MB)</text>
+  <text x="122" y="118" text-anchor="middle" font-size="10" fill="#93b8f7">2,484 resumes · 24 categories</text>
+
+  <line x1="215" y1="101" x2="233" y2="101" stroke="#4a7fd4" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Validate + Clean -->
+  <rect x="235" y="64" width="185" height="74" rx="6" fill="#1a3a7a" stroke="#4a7fd4" stroke-width="0.8"/>
+  <text x="327" y="88" text-anchor="middle" font-size="12" font-weight="600" fill="#e8f0fe">Validate + Clean</text>
+  <text x="327" y="104" text-anchor="middle" font-size="10" fill="#93b8f7">Drop ID · Resume_html</text>
+  <text x="327" y="118" text-anchor="middle" font-size="10" fill="#93b8f7">Nulls · dedup · schema</text>
+
+  <line x1="420" y1="101" x2="438" y2="101" stroke="#4a7fd4" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Text Cleaning -->
+  <rect x="440" y="64" width="185" height="74" rx="6" fill="#1a3a7a" stroke="#4a7fd4" stroke-width="0.8"/>
+  <text x="532" y="88" text-anchor="middle" font-size="12" font-weight="600" fill="#e8f0fe">Text Cleaning</text>
+  <text x="532" y="104" text-anchor="middle" font-size="10" fill="#93b8f7">URLs · emails · phones</text>
+  <text x="532" y="118" text-anchor="middle" font-size="10" fill="#93b8f7">Lowercase · normalise</text>
+
+  <line x1="625" y1="101" x2="643" y2="101" stroke="#4a7fd4" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Leakage Check -->
+  <rect x="645" y="64" width="185" height="74" rx="6" fill="#1a3a7a" stroke="#4a7fd4" stroke-width="0.8"/>
+  <text x="737" y="88" text-anchor="middle" font-size="12" font-weight="600" fill="#e8f0fe">Leakage Check</text>
+  <text x="737" y="104" text-anchor="middle" font-size="10" fill="#93b8f7">detect_leakage()</text>
+  <text x="737" y="118" text-anchor="middle" font-size="10" fill="#93b8f7">Zero-variance · corr guard</text>
+
+  <line x1="830" y1="101" x2="848" y2="101" stroke="#4a7fd4" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Stratified Split -->
+  <rect x="850" y="64" width="220" height="74" rx="6" fill="#1a3a7a" stroke="#4a7fd4" stroke-width="0.8"/>
+  <text x="960" y="88" text-anchor="middle" font-size="12" font-weight="600" fill="#e8f0fe">Stratified Split</text>
+  <text x="960" y="104" text-anchor="middle" font-size="10" fill="#93b8f7">Train 64% · Cal 16% · Test 20%</text>
+  <text x="960" y="118" text-anchor="middle" font-size="10" fill="#93b8f7">StratifiedKFold — class ratios kept</text>
+
+  <!-- layer connector -->
+  <line x1="550" y1="150" x2="550" y2="166" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LAYER 2 — TRAINING PIPELINE  (purple)
+  ════════════════════════════════════════════════════════ -->
+  <rect x="10" y="168" width="1080" height="196" rx="8" fill="#1e0a3c" opacity="0.95"/>
+  <text x="18" y="184" font-size="10" font-weight="700" fill="#c49ef7" letter-spacing="1.5">TRAINING PIPELINE</text>
+
+  <!-- Row 1 -->
+  <!-- Dual Preprocessor -->
+  <rect x="28" y="190" width="170" height="68" rx="6" fill="#2d1060" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="113" y="211" text-anchor="middle" font-size="11" font-weight="600" fill="#e9d5ff">Dual Preprocessor</text>
+  <text x="113" y="226" text-anchor="middle" font-size="10" fill="#c4b5fd">Clipper+Power+Scaler</text>
+  <text x="113" y="240" text-anchor="middle" font-size="9" fill="#a78bfa">TF-IDF scaled + unscaled</text>
+
+  <line x1="198" y1="224" x2="210" y2="224" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arr2)"/>
+
+  <!-- TF-IDF -->
+  <rect x="212" y="190" width="170" height="68" rx="6" fill="#2d1060" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="297" y="211" text-anchor="middle" font-size="11" font-weight="600" fill="#e9d5ff">TF-IDF Vectoriser</text>
+  <text x="297" y="226" text-anchor="middle" font-size="10" fill="#c4b5fd">10K features · (1,2)-gram</text>
+  <text x="297" y="240" text-anchor="middle" font-size="10" fill="#c4b5fd">sublinear_tf · min_df=2</text>
+
+  <line x1="382" y1="224" x2="394" y2="224" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arr2)"/>
+
+  <!-- 9 Models -->
+  <rect x="396" y="190" width="170" height="68" rx="6" fill="#2d1060" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="481" y="211" text-anchor="middle" font-size="11" font-weight="600" fill="#e9d5ff">9 Models Tuned</text>
+  <text x="481" y="226" text-anchor="middle" font-size="10" fill="#c4b5fd">RandomizedSearchCV</text>
+  <text x="481" y="240" text-anchor="middle" font-size="10" fill="#c4b5fd">StratifiedKFold CV=5</text>
+
+  <line x1="566" y1="224" x2="578" y2="224" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arr2)"/>
+
+  <!-- Evaluation -->
+  <rect x="580" y="190" width="170" height="68" rx="6" fill="#2d1060" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="665" y="211" text-anchor="middle" font-size="11" font-weight="600" fill="#e9d5ff">Evaluation</text>
+  <text x="665" y="226" text-anchor="middle" font-size="10" fill="#c4b5fd">F1-macro · Top-3 Acc</text>
+  <text x="665" y="240" text-anchor="middle" font-size="10" fill="#c4b5fd">ROC-AUC · recruiter ROI</text>
+
+  <line x1="750" y1="224" x2="762" y2="224" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arr2)"/>
+
+  <!-- Calibration + SHAP -->
+  <rect x="764" y="190" width="170" height="68" rx="6" fill="#2d1060" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="849" y="211" text-anchor="middle" font-size="11" font-weight="600" fill="#e9d5ff">Calibration + FI</text>
+  <text x="849" y="226" text-anchor="middle" font-size="10" fill="#c4b5fd">Isotonic regression</text>
+  <text x="849" y="240" text-anchor="middle" font-size="10" fill="#c4b5fd">feature_importances_</text>
+
+  <line x1="934" y1="224" x2="946" y2="224" stroke="#8b5cf6" stroke-width="1.2" marker-end="url(#arr2)"/>
+
+  <!-- Model Card -->
+  <rect x="948" y="190" width="128" height="68" rx="6" fill="#2d1060" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="1012" y="211" text-anchor="middle" font-size="11" font-weight="600" fill="#e9d5ff">Model Card</text>
+  <text x="1012" y="226" text-anchor="middle" font-size="10" fill="#c4b5fd">Google standard</text>
+  <text x="1012" y="240" text-anchor="middle" font-size="10" fill="#c4b5fd">MLflow tracking</text>
+
+  <!-- Row 2 — Models list -->
+  <rect x="28" y="272" width="1048" height="76" rx="6" fill="#1a0845" stroke="#6d28d9" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="552" y="290" text-anchor="middle" font-size="10" font-weight="700" fill="#a78bfa">MODELS COMPARED (9)</text>
+
+  <!-- Scaled models -->
+  <text x="52" y="308" font-size="10" fill="#c4b5fd" font-weight="600">Scaled →</text>
+  <rect x="110" y="296" width="90" height="22" rx="3" fill="#3b0f8c" stroke="#7c3aed" stroke-width="0.6"/>
+  <text x="155" y="311" text-anchor="middle" font-size="9" fill="#ddd6fe">LogisticReg</text>
+  <rect x="208" y="296" width="90" height="22" rx="3" fill="#3b0f8c" stroke="#7c3aed" stroke-width="0.6"/>
+  <text x="253" y="311" text-anchor="middle" font-size="9" fill="#ddd6fe">LinearSVC</text>
+  <rect x="306" y="296" width="90" height="22" rx="3" fill="#3b0f8c" stroke="#7c3aed" stroke-width="0.6"/>
+  <text x="351" y="311" text-anchor="middle" font-size="9" fill="#ddd6fe">SGDClassifier</text>
+  <rect x="404" y="296" width="90" height="22" rx="3" fill="#3b0f8c" stroke="#7c3aed" stroke-width="0.6"/>
+  <text x="449" y="311" text-anchor="middle" font-size="9" fill="#ddd6fe">KNN</text>
+
+  <!-- Unscaled models -->
+  <text x="510" y="308" font-size="10" fill="#c4b5fd" font-weight="600">Unscaled →</text>
+  <rect x="580" y="296" width="90" height="22" rx="3" fill="#3b0f8c" stroke="#7c3aed" stroke-width="0.6"/>
+  <text x="625" y="311" text-anchor="middle" font-size="9" fill="#ddd6fe">ComplementNB</text>
+  <rect x="678" y="296" width="90" height="22" rx="3" fill="#3b0f8c" stroke="#7c3aed" stroke-width="0.6"/>
+  <text x="723" y="311" text-anchor="middle" font-size="9" fill="#ddd6fe">RandomForest</text>
+  <rect x="776" y="296" width="90" height="22" rx="3" fill="#3b0f8c" stroke="#7c3aed" stroke-width="0.6"/>
+  <text x="821" y="311" text-anchor="middle" font-size="9" fill="#ddd6fe">ExtraTrees</text>
+  <rect x="874" y="296" width="90" height="22" rx="3" fill="#4a0080" stroke="#a855f7" stroke-width="1"/>
+  <text x="919" y="311" text-anchor="middle" font-size="9" font-weight="700" fill="#f0abfc">LightGBM ⭐</text>
+  <rect x="972" y="296" width="90" height="22" rx="3" fill="#3b0f8c" stroke="#7c3aed" stroke-width="0.6"/>
+  <text x="1017" y="311" text-anchor="middle" font-size="9" fill="#ddd6fe">XGBoost</text>
+
+  <!-- Metrics row -->
+  <text x="52" y="336" font-size="9" fill="#a78bfa">Champion →  LightGBM   F1-macro: 0.7608   Accuracy: 0.8068   Top-3 Acc: 0.9416   ROC-AUC: 0.9793   Gap: 0.1932</text>
+
+  <!-- layer connector -->
+  <line x1="550" y1="364" x2="550" y2="380" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LAYER 3 — CHAMPION-CHALLENGER  (green)
+  ════════════════════════════════════════════════════════ -->
+  <rect x="10" y="382" width="1080" height="100" rx="8" fill="#052e16" opacity="0.96"/>
+  <text x="18" y="398" font-size="10" font-weight="700" fill="#86efac" letter-spacing="1.5">CHAMPION-CHALLENGER SYSTEM</text>
+
+  <!-- Gate 1 -->
+  <rect x="28" y="408" width="220" height="62" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="0.8"/>
+  <text x="138" y="428" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">Gate 1 — F1 Improvement</text>
+  <text x="138" y="444" text-anchor="middle" font-size="10" fill="#6ee7b7">challenger_f1 - champion_f1</text>
+  <text x="138" y="459" text-anchor="middle" font-size="10" fill="#6ee7b7">must be ≥ 0.005</text>
+
+  <line x1="248" y1="439" x2="266" y2="439" stroke="#10b981" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Gate 2 -->
+  <rect x="268" y="408" width="220" height="62" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="0.8"/>
+  <text x="378" y="428" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">Gate 2 — Accuracy Floor</text>
+  <text x="378" y="444" text-anchor="middle" font-size="10" fill="#6ee7b7">challenger accuracy</text>
+  <text x="378" y="459" text-anchor="middle" font-size="10" fill="#6ee7b7">must be ≥ 0.80</text>
+
+  <line x1="488" y1="439" x2="506" y2="439" stroke="#10b981" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Gate 3 -->
+  <rect x="508" y="408" width="220" height="62" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="0.8"/>
+  <text x="618" y="428" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">Gate 3 — Generalisation</text>
+  <text x="618" y="444" text-anchor="middle" font-size="10" fill="#6ee7b7">train-test accuracy gap</text>
+  <text x="618" y="459" text-anchor="middle" font-size="10" fill="#6ee7b7">must be ≤ 0.10</text>
+
+  <line x1="728" y1="439" x2="746" y2="439" stroke="#10b981" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Decision -->
+  <rect x="748" y="408" width="190" height="62" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="0.8"/>
+  <text x="843" y="428" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">Decision</text>
+  <text x="843" y="444" text-anchor="middle" font-size="10" fill="#6ee7b7">ALL gates pass → PROMOTED</text>
+  <text x="843" y="459" text-anchor="middle" font-size="10" fill="#6ee7b7">ANY fail → REJECTED</text>
+
+  <line x1="938" y1="439" x2="950" y2="439" stroke="#10b981" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- Registry -->
+  <rect x="952" y="408" width="124" height="62" rx="6" fill="#052e16" stroke="#34d399" stroke-width="1"/>
+  <text x="1014" y="428" text-anchor="middle" font-size="11" font-weight="600" fill="#a7f3d0">Registry</text>
+  <text x="1014" y="444" text-anchor="middle" font-size="10" fill="#6ee7b7">latest_model.json</text>
+  <text x="1014" y="459" text-anchor="middle" font-size="10" fill="#6ee7b7">challenger_log.json</text>
+
+  <!-- layer connector -->
+  <line x1="550" y1="482" x2="550" y2="498" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LAYER 4 — SERVING LAYER  (amber)
+  ════════════════════════════════════════════════════════ -->
+  <rect x="10" y="500" width="1080" height="174" rx="8" fill="#1c1000" opacity="0.97"/>
+  <text x="18" y="516" font-size="10" font-weight="700" fill="#fcd34d" letter-spacing="1.5">SERVING LAYER</text>
+
+  <!-- Model Loader -->
+  <rect x="28" y="526" width="170" height="130" rx="6" fill="#451a00" stroke="#f59e0b" stroke-width="0.8"/>
+  <text x="113" y="548" text-anchor="middle" font-size="11" font-weight="600" fill="#fde68a">Model Loader</text>
+  <text x="113" y="564" text-anchor="middle" font-size="10" fill="#fbbf24">load_latest_model()</text>
+  <text x="113" y="579" text-anchor="middle" font-size="10" fill="#fbbf24">LightGBM .joblib</text>
+  <text x="113" y="594" text-anchor="middle" font-size="10" fill="#fbbf24">LabelEncoder</text>
+  <text x="113" y="609" text-anchor="middle" font-size="10" fill="#fbbf24">Calibrated pipeline</text>
+
+  <line x1="198" y1="591" x2="216" y2="591" stroke="#f59e0b" stroke-width="1.2" marker-end="url(#arr3)"/>
+
+  <!-- Screening Service -->
+  <rect x="218" y="526" width="170" height="130" rx="6" fill="#451a00" stroke="#f59e0b" stroke-width="0.8"/>
+  <text x="303" y="548" text-anchor="middle" font-size="11" font-weight="600" fill="#fde68a">Screening Service</text>
+  <text x="303" y="564" text-anchor="middle" font-size="10" fill="#fbbf24">prepare_features()</text>
+  <text x="303" y="579" text-anchor="middle" font-size="10" fill="#fbbf24">screen_resume()</text>
+  <text x="303" y="594" text-anchor="middle" font-size="10" fill="#fbbf24">batch_rank()</text>
+  <text x="303" y="609" text-anchor="middle" font-size="10" fill="#fbbf24">predict_proba()</text>
+
+  <line x1="388" y1="591" x2="406" y2="591" stroke="#f59e0b" stroke-width="1.2" marker-end="url(#arr3)"/>
+
+  <!-- Match Engine -->
+  <rect x="408" y="526" width="170" height="130" rx="6" fill="#451a00" stroke="#f59e0b" stroke-width="0.8"/>
+  <text x="493" y="548" text-anchor="middle" font-size="11" font-weight="600" fill="#fde68a">Match Engine</text>
+  <text x="493" y="564" text-anchor="middle" font-size="10" fill="#fbbf24">keyword_overlap_score()</text>
+  <text x="493" y="579" text-anchor="middle" font-size="10" fill="#fbbf24">experience_boost()</text>
+  <text x="493" y="594" text-anchor="middle" font-size="10" fill="#fbbf24">get_match_band()</text>
+  <text x="493" y="609" text-anchor="middle" font-size="10" fill="#fbbf24">SHORTLIST/REVIEW/REJECT</text>
+
+  <line x1="578" y1="591" x2="596" y2="591" stroke="#f59e0b" stroke-width="1.2" marker-end="url(#arr3)"/>
+
+  <!-- FastAPI -->
+  <rect x="598" y="526" width="170" height="130" rx="6" fill="#451a00" stroke="#f59e0b" stroke-width="0.8"/>
+  <text x="683" y="548" text-anchor="middle" font-size="11" font-weight="600" fill="#fde68a">FastAPI</text>
+  <text x="683" y="564" text-anchor="middle" font-size="10" fill="#fbbf24">POST /predict</text>
+  <text x="683" y="579" text-anchor="middle" font-size="10" fill="#fbbf24">POST /rank (batch)</text>
+  <text x="683" y="594" text-anchor="middle" font-size="10" fill="#fbbf24">GET /health</text>
+  <text x="683" y="609" text-anchor="middle" font-size="10" fill="#fbbf24">GET /model_info</text>
+  <text x="683" y="624" text-anchor="middle" font-size="10" fill="#fbbf24">Render deployed</text>
+
+  <line x1="768" y1="591" x2="786" y2="591" stroke="#f59e0b" stroke-width="1.2" marker-end="url(#arr3)"/>
+
+  <!-- Simulator -->
+  <rect x="788" y="526" width="170" height="130" rx="6" fill="#451a00" stroke="#f59e0b" stroke-width="0.8"/>
+  <text x="873" y="548" text-anchor="middle" font-size="11" font-weight="600" fill="#fde68a">Resume Simulator</text>
+  <text x="873" y="564" text-anchor="middle" font-size="10" fill="#fbbf24">3 scenarios</text>
+  <text x="873" y="579" text-anchor="middle" font-size="10" fill="#fbbf24">strong · weak · random</text>
+  <text x="873" y="594" text-anchor="middle" font-size="10" fill="#fbbf24">Hits /predict API</text>
+  <text x="873" y="609" text-anchor="middle" font-size="10" fill="#fbbf24">400ms delay</text>
+
+  <line x1="958" y1="591" x2="976" y2="591" stroke="#f59e0b" stroke-width="1.2" marker-end="url(#arr3)"/>
+
+  <!-- Response -->
+  <rect x="978" y="526" width="100" height="130" rx="6" fill="#3d1500" stroke="#fbbf24" stroke-width="1"/>
+  <text x="1028" y="548" text-anchor="middle" font-size="11" font-weight="600" fill="#fde68a">Response</text>
+  <text x="1028" y="566" text-anchor="middle" font-size="10" fill="#fbbf24">predicted_cat</text>
+  <text x="1028" y="581" text-anchor="middle" font-size="10" fill="#fbbf24">top3_categories</text>
+  <text x="1028" y="596" text-anchor="middle" font-size="10" fill="#fbbf24">final_score</text>
+  <text x="1028" y="611" text-anchor="middle" font-size="10" fill="#fbbf24">match_band</text>
+  <text x="1028" y="626" text-anchor="middle" font-size="10" fill="#fbbf24">recommendation</text>
+  <text x="1028" y="641" text-anchor="middle" font-size="10" fill="#fbbf24">keyword_overlap</text>
+
+  <!-- layer connector -->
+  <line x1="550" y1="674" x2="550" y2="690" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LAYER 5 — MONITORING  (red/pink)
+  ════════════════════════════════════════════════════════ -->
+  <rect x="10" y="692" width="1080" height="250" rx="8" fill="#2d0a0a" opacity="0.96"/>
+  <text x="18" y="708" font-size="10" font-weight="700" fill="#fca5a5" letter-spacing="1.5">MONITORING LAYER — STREAMLIT DASHBOARD</text>
+
+  <!-- Real-Time Alerts -->
+  <rect x="28" y="716" width="180" height="208" rx="6" fill="#5a0a0a" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="118" y="736" text-anchor="middle" font-size="11" font-weight="600" fill="#fecaca">Real-Time Alerts</text>
+  <text x="118" y="752" text-anchor="middle" font-size="10" fill="#fca5a5">Avg score &lt; 0.50 alert</text>
+  <text x="118" y="767" text-anchor="middle" font-size="10" fill="#fca5a5">Accuracy &lt; 75% alert</text>
+  <text x="118" y="782" text-anchor="middle" font-size="10" fill="#fca5a5">PSI critical drift</text>
+  <text x="118" y="797" text-anchor="middle" font-size="10" fill="#fca5a5">All systems nominal ✅</text>
+
+  <!-- Champion History -->
+  <rect x="222" y="716" width="180" height="208" rx="6" fill="#5a0a0a" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="312" y="736" text-anchor="middle" font-size="11" font-weight="600" fill="#fecaca">Champion History</text>
+  <text x="312" y="752" text-anchor="middle" font-size="10" fill="#fca5a5">Latest decision badge</text>
+  <text x="312" y="767" text-anchor="middle" font-size="10" fill="#fca5a5">3-gate status visual</text>
+  <text x="312" y="782" text-anchor="middle" font-size="10" fill="#fca5a5">Full history table</text>
+  <text x="312" y="797" text-anchor="middle" font-size="9" fill="#f87171">F1 · Accuracy · Gap gates</text>
+
+  <!-- KPI Metrics -->
+  <rect x="416" y="716" width="180" height="208" rx="6" fill="#5a0a0a" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="506" y="736" text-anchor="middle" font-size="11" font-weight="600" fill="#fecaca">KPI Metrics + Charts</text>
+  <text x="506" y="752" text-anchor="middle" font-size="10" fill="#fca5a5">F1-macro · Accuracy live</text>
+  <text x="506" y="767" text-anchor="middle" font-size="10" fill="#fca5a5">Model comparison bar</text>
+  <text x="506" y="782" text-anchor="middle" font-size="10" fill="#fca5a5">Prediction distribution</text>
+  <text x="506" y="797" text-anchor="middle" font-size="10" fill="#fca5a5">Score histogram</text>
+
+  <!-- PSI Drift -->
+  <rect x="610" y="716" width="180" height="208" rx="6" fill="#5a0a0a" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="700" y="736" text-anchor="middle" font-size="11" font-weight="600" fill="#fecaca">PSI Drift Report</text>
+  <text x="700" y="752" text-anchor="middle" font-size="10" fill="#fca5a5">max_class_confidence</text>
+  <text x="700" y="767" text-anchor="middle" font-size="10" fill="#fca5a5">Horizontal bar chart</text>
+  <text x="700" y="782" text-anchor="middle" font-size="10" fill="#fca5a5">🟢 OK / 🟡 MODERATE</text>
+  <text x="700" y="797" text-anchor="middle" font-size="9" fill="#f87171">🔴 CRITICAL · retrain</text>
+
+  <!-- Recent Predictions -->
+  <rect x="804" y="716" width="180" height="208" rx="6" fill="#5a0a0a" stroke="#ef4444" stroke-width="0.8"/>
+  <text x="894" y="736" text-anchor="middle" font-size="11" font-weight="600" fill="#fecaca">Recent Predictions</text>
+  <text x="894" y="752" text-anchor="middle" font-size="10" fill="#fca5a5">Last 50 API calls</text>
+  <text x="894" y="767" text-anchor="middle" font-size="10" fill="#fca5a5">Category · score · band</text>
+  <text x="894" y="782" text-anchor="middle" font-size="10" fill="#fca5a5">Rule triggered col</text>
+  <text x="894" y="797" text-anchor="middle" font-size="10" fill="#fca5a5">prediction_logs.csv</text>
+
+  <!-- Sidebar Live Screening -->
+  <rect x="804" y="834" width="180" height="82" rx="6" fill="#450a0a" stroke="#f87171" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="894" y="852" text-anchor="middle" font-size="10" font-weight="600" fill="#fecaca">Sidebar Live Screening</text>
+  <text x="894" y="868" text-anchor="middle" font-size="9" fill="#fca5a5">Paste resume + JD</text>
+  <text x="894" y="883" text-anchor="middle" font-size="9" fill="#fca5a5">Calls /predict live</text>
+  <text x="894" y="898" text-anchor="middle" font-size="9" fill="#fca5a5">Shows SHORTLIST/REVIEW/REJECT</text>
+
+  <!-- Deployment boxes -->
+  <rect x="998" y="716" width="82" height="60" rx="6" fill="#450a0a" stroke="#dc2626" stroke-width="0.8"/>
+  <text x="1039" y="739" text-anchor="middle" font-size="11" font-weight="600" fill="#fecaca">Render</text>
+  <text x="1039" y="755" text-anchor="middle" font-size="10" fill="#fca5a5">FastAPI</text>
+  <text x="1039" y="768" text-anchor="middle" font-size="9" fill="#fca5a5">Auto-deploy</text>
+
+  <rect x="998" y="786" width="82" height="60" rx="6" fill="#450a0a" stroke="#dc2626" stroke-width="0.8"/>
+  <text x="1039" y="809" text-anchor="middle" font-size="11" font-weight="600" fill="#fecaca">Streamlit</text>
+  <text x="1039" y="825" text-anchor="middle" font-size="10" fill="#fca5a5">Dashboard</text>
+  <text x="1039" y="838" text-anchor="middle" font-size="9" fill="#fca5a5">Cloud deploy</text>
+
+  <!-- CI/CD -->
+  <rect x="998" y="856" width="82" height="60" rx="6" fill="#450a0a" stroke="#dc2626" stroke-width="0.8"/>
+  <text x="1039" y="879" text-anchor="middle" font-size="11" font-weight="600" fill="#fecaca">GitHub CI</text>
+  <text x="1039" y="895" text-anchor="middle" font-size="10" fill="#fca5a5">pytest on push</text>
+  <text x="1039" y="908" text-anchor="middle" font-size="9" fill="#fca5a5">34 unit tests</text>
+
+</svg>

@@ -1,0 +1,309 @@
+timestamp,resume_snippet,predicted_category,final_score,match_band,recommendation,rule_triggered
+1782643830.836798,"EDUCATION
+BSc Information Technology — Pune University (2011)
+
+EXPERIENCE
+5+ years of experience as ",INFORMATION-TECHNOLOGY,0.984,STRONG,SHORTLIST,
+1782643833.4181097,"EDUCATION
+MCA — BITS Pilani (2019)
+
+EXPERIENCE
+5+ years of experience as a Sales at HCL Technologies",SALES,0.9392,STRONG,SHORTLIST,
+1782643835.9494815,"EDUCATION
+M.Tech Data Science — Anna University (2020)
+
+EXPERIENCE
+7+ years of experience as a Testi",AVIATION,0.2751,WEAK,REJECT,
+1782643838.48584,"EDUCATION
+MCA — NIT Surathkal (2019)
+
+EXPERIENCE
+6+ years of experience as a Data Science at Capgemi",AVIATION,0.1736,WEAK,REJECT,
+1782643841.034734,"EDUCATION
+B.Tech Computer Science — IIT Bombay (2020)
+
+EXPERIENCE
+9+ years of experience as a Blockc",AVIATION,0.3532,WEAK,REJECT,
+1782643843.547112,"EDUCATION
+B.E. Electronics — NIT Surathkal (2019)
+
+EXPERIENCE
+4+ years of experience as a HR at Wipr",HR,0.8498,STRONG,SHORTLIST,
+1782643846.0779278,"EDUCATION
+BSc Information Technology — Pune University (2011)
+
+EXPERIENCE
+5+ years of experience as ",INFORMATION-TECHNOLOGY,0.9893,STRONG,SHORTLIST,
+1782643848.6059237,"EDUCATION
+BSc Information Technology — BITS Pilani (2017)
+
+EXPERIENCE
+3+ years of experience as a Bl",INFORMATION-TECHNOLOGY,1.0,STRONG,SHORTLIST,
+1782643851.1228387,"EDUCATION
+B.E. Electronics — Pune University (2018)
+
+EXPERIENCE
+8+ years of experience as a Network ",AGRICULTURE,0.3974,WEAK,REJECT,
+1782643853.642326,"EDUCATION
+B.Tech Computer Science — NIT Surathkal (2011)
+
+EXPERIENCE
+3+ years of experience as a Dat",AVIATION,0.3532,WEAK,REJECT,
+1782643856.1788564,"EDUCATION
+MCA — Anna University (2021)
+
+EXPERIENCE
+10+ years of experience as a Java Developer at Ca",AVIATION,0.2873,WEAK,REJECT,
+1782643858.7041376,"EDUCATION
+B.Tech Computer Science — BITS Pilani (2022)
+
+EXPERIENCE
+10+ years of experience as a Netw",AGRICULTURE,0.3437,WEAK,REJECT,
+1782643861.2566261,"EDUCATION
+BSc Information Technology — BITS Pilani (2011)
+
+EXPERIENCE
+10+ years of experience as a H",INFORMATION-TECHNOLOGY,0.843,STRONG,SHORTLIST,
+1782643863.768167,"EDUCATION
+MCA — IIT Bombay (2011)
+
+EXPERIENCE
+9+ years of experience as a ETL Developer at IBM.
+Work",AVIATION,0.3205,WEAK,REJECT,
+1782643866.284472,"EDUCATION
+BSc Information Technology — Pune University (2022)
+
+EXPERIENCE
+3+ years of experience as ",INFORMATION-TECHNOLOGY,0.984,STRONG,SHORTLIST,
+1782643868.8220608,"EDUCATION
+B.E. Electronics — NIT Surathkal (2016)
+
+EXPERIENCE
+4+ years of experience as a Java Devel",AVIATION,0.2302,WEAK,REJECT,
+1782643871.339652,"EDUCATION
+BSc Information Technology — Anna University (2021)
+
+EXPERIENCE
+5+ years of experience as ",INFORMATION-TECHNOLOGY,0.8697,STRONG,SHORTLIST,
+1782643873.8675792,"EDUCATION
+M.Tech Data Science — BITS Pilani (2012)
+
+EXPERIENCE
+5+ years of experience as a Testing a",AVIATION,0.3077,WEAK,REJECT,
+1782643876.373216,"EDUCATION
+B.E. Electronics — Pune University (2021)
+
+EXPERIENCE
+9+ years of experience as a Sales at",SALES,0.8392,STRONG,SHORTLIST,
+1782643878.9187572,"EDUCATION
+M.Tech Data Science — Anna University (2010)
+
+EXPERIENCE
+8+ years of experience as a DevOp",AGRICULTURE,0.3292,WEAK,REJECT,
+1782643882.0039408,"EXPERIENCE
+0+ years of experience as a Python Developer at Tech Mahindra.
+Worked extensively with Ku",AVIATION,0.1783,WEAK,REJECT,
+1782643884.521359,"EDUCATION
+B.Tech Computer Science — Pune University (2011)
+
+EXPERIENCE
+1+ years of experience as a E",AGRICULTURE,0.2151,WEAK,REJECT,
+1782643887.038385,"EXPERIENCE
+1+ years of experience as a Python Developer at HCL Technologies.
+Worked extensively with",AGRICULTURE,0.192,WEAK,REJECT,
+1782643889.5629294,"EDUCATION
+BSc Information Technology — Pune University (2012)
+
+EXPERIENCE
+1+ years of experience as ",INFORMATION-TECHNOLOGY,0.9444,STRONG,SHORTLIST,
+1782643892.084157,"EDUCATION
+B.E. Electronics — NIT Surathkal (2013)
+
+EXPERIENCE
+0+ years of experience as a Blockchain",AVIATION,0.249,WEAK,REJECT,
+1782643894.6351588,"EXPERIENCE
+1+ years of experience as a Blockchain at Wipro.
+Worked extensively with React, Spark, No",AGRICULTURE,0.2131,WEAK,REJECT,
+1782643897.1740096,"EXPERIENCE
+1+ years of experience as a HR at HCL Technologies.
+Worked extensively with TensorFlow, D",HR,0.9897,STRONG,SHORTLIST,
+1782643899.6977654,"EDUCATION
+BSc Information Technology — BITS Pilani (2013)
+
+EXPERIENCE
+0+ years of experience as a Da",INFORMATION-TECHNOLOGY,0.9715,STRONG,SHORTLIST,
+1782643902.2183352,"EDUCATION
+MCA — Anna University (2014)
+
+EXPERIENCE
+1+ years of experience as a ETL Developer at Tech",AVIATION,0.2238,WEAK,REJECT,
+1782643904.7797174,"EXPERIENCE
+2+ years of experience as a ETL Developer at Wipro.
+Worked extensively with NLP, Power BI",AGRICULTURE,0.2146,WEAK,REJECT,
+1782643907.3111265,"EXPERIENCE
+1+ years of experience as a Network Security Engineer at IBM.
+Worked extensively with Dee",AGRICULTURE,0.2704,WEAK,REJECT,
+1782643909.8374715,"EDUCATION
+M.Tech Data Science — Anna University (2017)
+
+EXPERIENCE
+1+ years of experience as a Java ",AVIATION,0.1806,WEAK,REJECT,
+1782643912.345267,"EDUCATION
+BSc Information Technology — Anna University (2018)
+
+EXPERIENCE
+0+ years of experience as ",INFORMATION-TECHNOLOGY,0.9272,STRONG,SHORTLIST,
+1782643914.8309624,"EXPERIENCE
+0+ years of experience as a DevOps Engineer at Capgemini.
+Worked extensively with Azure i",AGRICULTURE,0.2135,WEAK,REJECT,
+1782643917.3441746,"EDUCATION
+BSc Information Technology — BITS Pilani (2012)
+
+EXPERIENCE
+0+ years of experience as a ET",INFORMATION-TECHNOLOGY,0.9436,STRONG,SHORTLIST,
+1782643919.8584154,"EDUCATION
+MCA — BITS Pilani (2021)
+
+EXPERIENCE
+0+ years of experience as a Testing at L&T Infotech.
+",AGRICULTURE,0.2151,WEAK,REJECT,
+1782643922.416664,"EXPERIENCE
+0+ years of experience as a ETL Developer at Wipro.
+Worked extensively with scikit-learn,",AGRICULTURE,0.2631,WEAK,REJECT,
+1782643924.960933,"EDUCATION
+B.Tech Computer Science — NIT Surathkal (2018)
+
+EXPERIENCE
+2+ years of experience as a Blo",AGRICULTURE,0.2176,WEAK,REJECT,
+1782643927.4792438,"EDUCATION
+B.Tech Computer Science — IIT Bombay (2020)
+
+EXPERIENCE
+1+ years of experience as a Python",AGRICULTURE,0.3176,WEAK,REJECT,
+1782643930.012261,"EXPERIENCE
+1+ years of experience as a Network Security Engineer at Cognizant.
+Worked extensively wi",AGRICULTURE,0.2204,WEAK,REJECT,
+1782643949.4543507,"EXPERIENCE
+3+ years of experience as a Java Developer at Cognizant.
+Worked extensively with Docker, ",AVIATION,0.2885,WEAK,REJECT,
+1782643952.0093384,"EDUCATION
+BSc Information Technology — NIT Surathkal (2023)
+
+EXPERIENCE
+3+ years of experience as a ",INFORMATION-TECHNOLOGY,0.984,STRONG,SHORTLIST,
+1782643954.514006,"EXPERIENCE
+6+ years of experience as a DevOps Engineer at Capgemini.
+Worked extensively with Django,",AVIATION,0.3263,WEAK,REJECT,
+1782643956.9968235,"EXPERIENCE
+5+ years of experience as a Blockchain at HCL Technologies.
+Worked extensively with Node.",AGRICULTURE,0.2541,WEAK,REJECT,
+1782643959.529057,"EDUCATION
+MCA — IIT Bombay (2019)
+
+EXPERIENCE
+1+ years of experience as a Java Developer at L&T Info",ARTS,0.187,WEAK,REJECT,
+1782643962.0589166,"EXPERIENCE
+6+ years of experience as a Data Science at L&T Infotech.
+Worked extensively with NLP, Sc",AGRICULTURE,0.216,WEAK,REJECT,
+1782643964.5945346,"EDUCATION
+B.Tech Computer Science — NIT Surathkal (2012)
+
+EXPERIENCE
+3+ years of experience as a Dev",AGRICULTURE,0.3195,WEAK,REJECT,
+1782643967.1591883,"EXPERIENCE
+2+ years of experience as a DevOps Engineer at Tech Mahindra.
+Worked extensively with pan",AVIATION,0.3153,WEAK,REJECT,
+1782643969.6993816,"EXPERIENCE
+3+ years of experience as a ETL Developer at Tech Mahindra.
+Worked extensively with Java,",AVIATION,0.4393,MODERATE,REVIEW,
+1782643972.2209563,"EDUCATION
+M.Tech Data Science — NIT Surathkal (2022)
+
+EXPERIENCE
+1+ years of experience as a Testing",AGRICULTURE,0.2235,WEAK,REJECT,
+1782643974.741841,"EDUCATION
+BSc Information Technology — NIT Surathkal (2015)
+
+EXPERIENCE
+2+ years of experience as a ",INFORMATION-TECHNOLOGY,0.984,STRONG,SHORTLIST,
+1782643977.2370381,"EXPERIENCE
+2+ years of experience as a Network Security Engineer at Accenture.
+Worked extensively wi",AGRICULTURE,0.3254,WEAK,REJECT,
+1782643979.7873461,"EXPERIENCE
+1+ years of experience as a Network Security Engineer at L&T Infotech.
+Worked extensively",AGRICULTURE,0.2127,WEAK,REJECT,
+1782643982.289679,"EDUCATION
+BSc Information Technology — Anna University (2023)
+
+EXPERIENCE
+1+ years of experience as ",INFORMATION-TECHNOLOGY,0.884,STRONG,SHORTLIST,
+1782643984.806453,"EXPERIENCE
+1+ years of experience as a Testing at TCS.
+Worked extensively with SQL, TensorFlow in a ",AVIATION,0.2049,WEAK,REJECT,
+1782643987.3194432,"EXPERIENCE
+4+ years of experience as a Blockchain at Tech Mahindra.
+Worked extensively with SQL, Jav",AVIATION,0.349,WEAK,REJECT,
+1782643989.8605087,"EDUCATION
+M.Tech Data Science — IIT Bombay (2021)
+
+EXPERIENCE
+2+ years of experience as a Sales at C",SALES,0.9032,STRONG,SHORTLIST,
+1782643992.3533397,"EDUCATION
+MCA — NIT Surathkal (2011)
+
+EXPERIENCE
+1+ years of experience as a Blockchain at Accenture",AGRICULTURE,0.2149,WEAK,REJECT,
+1782643994.8920698,"EDUCATION
+B.Tech Computer Science — NIT Surathkal (2017)
+
+EXPERIENCE
+3+ years of experience as a Blo",AVIATION,0.2766,WEAK,REJECT,
+1782643997.4312012,"EXPERIENCE
+8+ years of experience as a Python Developer at Accenture.
+Worked extensively with pandas",AVIATION,0.349,WEAK,REJECT,
+1782643999.980553,"EDUCATION
+M.Tech Data Science — BITS Pilani (2017)
+
+EXPERIENCE
+8+ years of experience as a Java Deve",AGRICULTURE,0.3227,WEAK,REJECT,
+1782644002.5228732,"EDUCATION
+BSc Information Technology — IIT Bombay (2014)
+
+EXPERIENCE
+7+ years of experience as a Net",INFORMATION-TECHNOLOGY,1.0,STRONG,SHORTLIST,
+1782644005.066945,"EXPERIENCE
+1+ years of experience as a HR at IBM.
+Worked extensively with Tableau, FastAPI in a fast",HR,0.9632,STRONG,SHORTLIST,
+1782644007.5700493,"EDUCATION
+BSc Information Technology — Pune University (2012)
+
+EXPERIENCE
+6+ years of experience as ",INFORMATION-TECHNOLOGY,0.8697,STRONG,SHORTLIST,
+1782644010.1131306,"EDUCATION
+M.Tech Data Science — NIT Surathkal (2019)
+
+EXPERIENCE
+2+ years of experience as a Network",AGRICULTURE,0.3333,WEAK,REJECT,
+1782644012.6364467,"EXPERIENCE
+1+ years of experience as a HR at TCS.
+Worked extensively with Azure, Django in a fast-pa",HR,0.8632,STRONG,SHORTLIST,
+1782644015.165168,"EDUCATION
+M.Tech Data Science — IIT Bombay (2022)
+
+EXPERIENCE
+1+ years of experience as a DevOps Eng",AVIATION,0.2529,WEAK,REJECT,
+1782644017.6925774,"EXPERIENCE
+7+ years of experience as a Network Security Engineer at Tech Mahindra.
+Worked extensivel",AVIATION,0.3638,WEAK,REJECT,
+1782644020.2086627,"EXPERIENCE
+4+ years of experience as a Java Developer at TCS.
+Worked extensively with Git, Tableau, ",CHEF,0.1523,WEAK,REJECT,
+1782644022.7406652,"EDUCATION
+B.E. Electronics — IIT Bombay (2019)
+
+EXPERIENCE
+4+ years of experience as a Network Secur",AGRICULTURE,0.332,WEAK,REJECT,
+1782790298.8465693,"Python developer with 5 years of experience in machine learning, TensorFlow, scikit-learn, pandas, S",AGRICULTURE,0.2087,WEAK,REJECT,
+1782791194.558271,"Python developer with 5 years of experience in machine learning, TensorFlow, scikit-learn, pandas, S",AGRICULTURE,0.2087,WEAK,REJECT,
+1782791234.999541,"Python developer with 5 years of experience in machine learning, TensorFlow, scikit-learn, pandas, S",AGRICULTURE,0.2087,WEAK,REJECT,
+1782791296.2557778,"Python developer with 5 years of experience in machine learning, TensorFlow, scikit-learn, pandas, S",AGRICULTURE,0.2087,WEAK,REJECT,

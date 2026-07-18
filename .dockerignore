@@ -1,0 +1,35 @@
+# ============================================================
+# .DOCKERIGNORE — Resume Screener AI
+# ============================================================
+
+# Dev environments
+venv/
+env/
+.venv/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Tests (not needed in production image)
+tests/
+notebooks/
+docs/
+
+# Dataset (large raw files)
+data/
+
+# Git
+.git/
+.gitignore
+
+# Local config
+.vscode/
+.idea/
+*.swp
+
+# MLflow (not in prod)
+mlruns/

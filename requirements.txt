@@ -1,0 +1,42 @@
+# ============================================================
+# REQUIREMENTS — Resume Screener AI (Full Training)
+# ============================================================
+
+# API
+fastapi
+uvicorn
+
+# Data
+pandas==2.1.4
+numpy==1.26.4
+
+# ML core
+scikit-learn==1.3.2
+
+# Boosting models
+xgboost
+lightgbm
+
+# Serialization
+joblib
+
+# Explainability
+shap
+
+# Experiment tracking
+mlflow
+
+# NLP / Text
+nltk
+
+# Visualization
+matplotlib
+seaborn
+
+# Dashboard
+streamlit
+requests
+
+# Testing
+pytest
+pytest-cov
