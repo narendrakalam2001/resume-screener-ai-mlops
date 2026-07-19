@@ -1,7 +1,7 @@
 # 📄 Resume Screener AI — ML System
 
-[![CI](https://github.com/NarendraKalam/resume-screener-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/NarendraKalam/resume-screener-ai/actions)
-[![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://python.org)
+[![CI](https://github.com/NarendraKalam/resume-screener-ai-mlops/actions/workflows/ci.yml/badge.svg)](https://github.com/NarendraKalam/resume-screener-ai-mlops/actions)
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red.svg)](https://streamlit.io)
 [![LightGBM](https://img.shields.io/badge/Champion-LightGBM-brightgreen.svg)](https://lightgbm.readthedocs.io)
@@ -57,8 +57,8 @@ time by **60–70%** — the industry benchmark at Naukri.com scale.
 | Service | URL |
 |---|---|
 | 🚀 **FastAPI (Swagger UI)** | [https://resume-screener-ai-mlops.onrender.com/docs](https://resume-screener-ai-mlops.onrender.com/docs) |
-| 📊 **Monitoring Dashboard** | [https://resume-screener-dashboard.streamlit.app](https://resume-screener-dashboard.streamlit.app) |
-| 📓 **EDA Notebook** | [notebooks/resume_screener_eda.html](notebooks/resume_screener_eda.html) |
+| 📊 **Monitoring Dashboard** | [https://resume-screener-dashboard.streamlit.app](https://resume-screener-ai-mlops.streamlit.app) |
+| 📓 **EDA Notebook** | [notebooks/resume_screener_eda.ipynb](notebooks/resume_screener_eda.ipynb) |
 
 > ⚠️ Render free tier: first request may take 30–60 seconds (cold start).
 
@@ -237,18 +237,19 @@ resume-screener-ai/
 │   └── run_simulation.py             # python scripts/run_simulation.py --scenario strong --n 20
 │
 ├── notebooks/
-│   └── resume_screener_eda.html      # Professional EDA — 25 steps · 52 cells
+│   └── resume_screener_eda.ipynb     # Professional EDA — 25 steps · 52 cells
 │
 ├── data/
 │   └── sample_resumes.csv            # 5-row sample dataset for quick testing
 │
-├── resume_models/                    # Auto-generated — gitignored (large files)
+├── resume_models/                    # Model artifacts — all files pushed to GitHub
 │   ├── latest_model.json             # Champion model registry
 │   ├── challenger_log.json           # Full Champion-Challenger comparison history
 │   ├── model_card_LightGBM_v1.json  # Google Model Card JSON
 │   ├── model_experiment_results.csv  # All 9 models comparison table
 │   ├── monitor_scores.csv            # Prediction confidence scores log
-│   └── feature_drift_report.csv      # PSI drift per feature
+│   ├── feature_drift_report.csv      # PSI drift per feature
+│   └── resume_model_LightGBM_v1.joblib  # Trained champion model (15 MB)
 │
 ├── docs/
 │   ├── architecture/
@@ -280,7 +281,7 @@ resume-screener-ai/
 ├── requirements.txt                  # Full training requirements
 ├── requirements_api.txt              # Lean API-only requirements
 ├── requirements_dashboard.txt        # Dashboard-only requirements
-└── runtime.txt                       # Python 3.9
+└── runtime.txt                       # Python 3.10.13
 ```
 
 ---
@@ -290,8 +291,8 @@ resume-screener-ai/
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/NarendraKalam/resume-screener-ai.git
-cd resume-screener-ai
+git clone https://github.com/NarendraKalam/resume-screener-ai-mlops.git
+cd resume-screener-ai-mlops
 pip install -r requirements.txt
 ```
 
@@ -529,7 +530,7 @@ Business rules are evaluated **after** ML score — matching how real ATS platfo
 > The REVIEW band explicitly captures uncertainty — candidates the model is unsure about go to human review,
 > not the reject pile. This matches real underwriting logic used at Darwinbox and Workday.
 
-Results logged to `risk_models/challenger_log.json` and visible in the dashboard Section 2 with per-gate ✅/❌ status.
+Results logged to `resume_models/challenger_log.json` and visible in the dashboard Section 2 with per-gate ✅/❌ status.
 
 ---
 
@@ -579,17 +580,20 @@ Result: 31 passed · 3 skipped (fixture size < 50 guard — production code corr
 
 **Narendra Kalam** — MSc Computer Science (Gold Medalist — NASSCOM, Full Stack Data Science + AI)
 
-> Building 20+ industry-level, end-to-end ML systems targeting **30+ LPA** at top MNCs in India.
+> Building 20+ industry-level, end-to-end ML systems.
 
 ### Portfolio Projects
 
 | # | Project | Domain | Champion Model | Key Metric |
 |---|---|---|---|---|
-| 1 | Credit Card Fraud Detection | FinTech | ExtraTrees | F1 = 0.8962 · 284K transactions |
-| 2 | Credit Risk Prediction | BFSI | LightGBM | F1 = 0.9741 · ROC-AUC = 0.9991 |
-| 3 | Customer Churn Prediction | Telecom | — | — |
-| 4 | Store Sales Forecasting | Retail | — | Kaggle competition |
-| 5 | **Resume Screener AI** | **HR Tech** | **LightGBM** | **F1 = 0.7608 · Top-3 = 0.9416** |
+| 1 | Credit Card Fraud Detection | BFSI / Fintech | ExtraTrees | F1 = 0.8962 · 284K transactions |
+| 2 | Credit Risk Prediction | BFSI / Lending | LightGBM | F1 = 0.9741 · ROC-AUC = 0.9991 |
+| 3 | Customer Churn Prediction | Telecom / BFSI | CatBoost | F1 = 0.634 · Recall = 0.7312 |
+| 4 | House Price Prediction | Real Estate | CatBoost | RMSE = $20,128 · R² = 0.9053 |
+| 5 | Store Sales Forecasting | Retail / Supply Chain | LightGBM (Ensemble) | RMSLE = 0.3739 · R² = 0.9761 |
+| 6 | Energy Demand Forecasting | Energy / Utilities | ElasticNet | RMSE = 712.04 MW · R² = 0.9759 |
+| 7 | Stock Price & Risk Forecasting | Fintech / Capital Markets | Ridge | DirAcc = 53.44% · Sharpe = 0.80 |
+| 8 | **Resume Screener AI** | **HR Tech** | **LightGBM** | **F1 = 0.7608 · Top-3 = 0.9416** |
 
 ---
 
