@@ -1,6 +1,6 @@
 # 📄 Resume Screener AI — ML System
 
-[![CI](https://github.com/NarendraKalam/resume-screener-ai-mlops/actions/workflows/ci.yml/badge.svg)](https://github.com/NarendraKalam/resume-screener-ai-mlops/actions)
+[![CI](https://github.com/narendrakalam2001/resume-screener-ai-mlops/actions/workflows/ci.yml/badge.svg)](https://github.com/narendrakalam2001/resume-screener-ai-mlops/actions)
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red.svg)](https://streamlit.io)
