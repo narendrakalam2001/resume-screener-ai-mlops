@@ -70,64 +70,64 @@ time by **60–70%** — the industry benchmark at Naukri.com scale.
 
 ```
 ╔══════════════════════════════════════════════════════════════════════════════════╗
-║              RESUME SCREENER AI — 5-LAYER PRODUCTION SYSTEM                    ║
+║              RESUME SCREENER AI — 5-LAYER PRODUCTION SYSTEM                      ║
 ╠══════════════════════════════════════════════════════════════════════════════════╣
 ║                                                                                  ║
-║  ┌─────────────────────────────── DATA LAYER ──────────────────────────────┐   ║
-║  │  Kaggle CSV  →  Validate + Clean  →  Text Normalise  →  Leakage Check  │   ║
-║  │  2,482 resumes · 24 ALL-CAPS categories · Stratified Split 64/16/20%   │   ║
-║  └───────────────────────────────────┬──────────────────────────────────────┘   ║
+║  ┌─────────────────────────────── DATA LAYER ──────────────────────────────┐     ║
+║  │  Kaggle CSV  →  Validate + Clean  →  Text Normalise  →  Leakage Check   │     ║
+║  │  2,482 resumes · 24 ALL-CAPS categories · Stratified Split 64/16/20%    │     ║
+║  └───────────────────────────────────┬─────────────────────────────────────┘     ║
 ║                                      ▼                                           ║
-║  ┌─────────────────────────── TRAINING PIPELINE ───────────────────────────┐   ║
-║  │                                                                          │   ║
-║  │  ┌──────────────────┐    ┌───────────────┐    ┌──────────────────────┐  │   ║
-║  │  │  Dual TF-IDF     │    │  9 Models     │    │  Evaluation          │  │   ║
-║  │  │  Preprocessor    │───▶│  Tuned via    │───▶│  F1-macro · Top-3    │  │   ║
-║  │  │  Clipper+Scale   │    │  RandomSearch │    │  ROC-AUC · Gap       │  │   ║
-║  │  │  scaled+unscaled │    │  StratifiedCV │    │  Isotonic Calib.     │  │   ║
-║  │  └──────────────────┘    └───────────────┘    └──────────────────────┘  │   ║
-║  │                                                                          │   ║
-║  │  LogReg · LinearSVC · SGD · ComplementNB · KNN (scaled)                │   ║
-║  │  ComplementNB · RF · ExtraTrees · XGBoost · LightGBM ⭐ (unscaled)    │   ║
-║  │                                                                          │   ║
-║  │  CHAMPION → LightGBM  F1=0.7608  Acc=0.8068  Top3=0.9416             │   ║
-║  └───────────────────────────────────┬──────────────────────────────────────┘   ║
+║  ┌─────────────────────────── TRAINING PIPELINE ───────────────────────────┐     ║
+║  │                                                                         │     ║
+║  │  ┌──────────────────┐    ┌───────────────┐    ┌──────────────────────┐  │     ║
+║  │  │  Dual TF-IDF     │    │  9 Models     │    │  Evaluation          │  │     ║
+║  │  │  Preprocessor    │───▶│  Tuned via    │───▶│  F1-macro · Top-3   │  │     ║
+║  │  │  Clipper+Scale   │    │  RandomSearch │    │  ROC-AUC · Gap       │  │     ║
+║  │  │  scaled+unscaled │    │  StratifiedCV │    │  Isotonic Calib.     │  │     ║
+║  │  └──────────────────┘    └───────────────┘    └──────────────────────┘  │     ║
+║  │                                                                         │     ║
+║  │  LogReg · LinearSVC · SGD · ComplementNB · KNN (scaled)                 │     ║
+║  │  ComplementNB · RF · ExtraTrees · XGBoost · LightGBM ⭐ (unscaled)     │     ║
+║  │                                                                         │     ║
+║  │  CHAMPION → LightGBM  F1=0.7608  Acc=0.8068  Top3=0.9416                │     ║
+║  └───────────────────────────────────┬─────────────────────────────────────┘     ║
 ║                                      ▼                                           ║
-║  ┌──────────────────────── CHAMPION-CHALLENGER ────────────────────────────┐   ║
-║  │                                                                          │   ║
-║  │  Gate 1: F1 improvement   ≥ 0.005  →  ✅ PASS / ❌ FAIL               │   ║
-║  │  Gate 2: Test accuracy    ≥ 0.80   →  ✅ PASS / ❌ FAIL               │   ║
-║  │  Gate 3: Train-test gap   ≤ 0.10   →  ✅ PASS / ❌ FAIL               │   ║
-║  │                                                                          │   ║
-║  │  ALL gates pass → PROMOTED (latest_model.json updated)                 │   ║
-║  │  ANY gate fails → REJECTED (champion retained, result logged)           │   ║
-║  └───────────────────────────────────┬──────────────────────────────────────┘   ║
+║  ┌──────────────────────── CHAMPION-CHALLENGER ────────────────────────────┐     ║
+║  │                                                                         │     ║
+║  │  Gate 1: F1 improvement   ≥ 0.005  →  ✅ PASS / ❌ FAIL                │     ║
+║  │  Gate 2: Test accuracy    ≥ 0.80   →  ✅ PASS / ❌ FAIL                │     ║
+║  │  Gate 3: Train-test gap   ≤ 0.10   →  ✅ PASS / ❌ FAIL                │     ║
+║  │                                                                         │     ║
+║  │  ALL gates pass → PROMOTED (latest_model.json updated)                  │     ║
+║  │  ANY gate fails → REJECTED (champion retained, result logged)           │     ║
+║  └───────────────────────────────────┬─────────────────────────────────────┘     ║
 ║                                      ▼                                           ║
-║  ┌──────────────────────────── SERVING LAYER ──────────────────────────────┐   ║
-║  │                                                                          │   ║
-║  │  Model Loader  →  Screening Service  →  Match Engine  →  FastAPI        │   ║
-║  │                                                                          │   ║
-║  │  POST /predict  → single resume screen         (→ SHORTLIST/REVIEW/REJECT) │ ║
-║  │  POST /rank     → batch rank top-K candidates  (→ ranked list)          │   ║
-║  │  GET  /health   → API health check             (→ {status, model_loaded})│   ║
-║  │  GET  /model_info → champion model card        (→ metrics + biz impact) │   ║
-║  │                                                                          │   ║
-║  │  Match Engine:  ML Score → Keyword Overlap → Experience Boost           │   ║
-║  │                 → STRONG (≥0.70) / MODERATE (0.40–0.70) / WEAK (<0.40) │   ║
-║  │                 → SHORTLIST          / REVIEW              / REJECT      │   ║
-║  └───────────────────────────────────┬──────────────────────────────────────┘   ║
+║  ┌──────────────────────────── SERVING LAYER ──────────────────────────────┐     ║
+║  │                                                                         │     ║
+║  │  Model Loader  →  Screening Service  →  Match Engine  →  FastAPI        │     ║
+║  │                                                                         │     ║
+║  │  POST /predict → single resume screen       (→ SHORTLIST/REVIEW/REJECT) │     ║
+║  │  POST /rank   → batch rank top-K candidates (→ ranked list)             │     ║
+║  │  GET  /health  → API health check           (→ {status, model_loaded})  │     ║
+║  │  GET  /model_info → champion model card     (→ metrics + biz impact)    │     ║
+║  │                                                                         │     ║
+║  │  Match Engine:  ML Score → Keyword Overlap → Experience Boost           │     ║
+║  │                 → STRONG (≥0.70) / MODERATE (0.40–0.70) / WEAK (<0.40)  │     ║
+║  │                 → SHORTLIST          / REVIEW              / REJECT     │     ║
+║  └───────────────────────────────────┬─────────────────────────────────────┘     ║
 ║                                      ▼                                           ║
-║  ┌─────────────────── MONITORING LAYER — STREAMLIT DASHBOARD ──────────────┐   ║
-║  │                                                                          │   ║
-║  │  Section 1: Real-Time Alerts     → score drop · accuracy drop · PSI    │   ║
-║  │  Section 2: Champion-Challenger  → decision · 3-gate status · history  │   ║
-║  │  Section 3: KPIs + Charts        → F1 · Accuracy · Top-3 · model bar  │   ║
-║  │  Section 4: PSI Drift            → max_class_confidence PSI=0.1132     │   ║
-║  │  Section 5: Recent Predictions   → audit log · category · band · rule  │   ║
-║  │  Sidebar:   Live Screening       → paste resume+JD → instant decision  │   ║
-║  │                                                                          │   ║
-║  │  Simulator: 3 scenarios (strong · weak · random) → hits /predict API   │   ║
-║  └──────────────────────────────────────────────────────────────────────────┘   ║
+║  ┌─────────────────── MONITORING LAYER — STREAMLIT DASHBOARD ──────────────┐     ║
+║  │                                                                         │     ║
+║  │  Section 1: Real-Time Alerts     → score drop · accuracy drop · PSI     │     ║
+║  │  Section 2: Champion-Challenger  → decision · 3-gate status · history   │     ║
+║  │  Section 3: KPIs + Charts        → F1 · Accuracy · Top-3 · model bar    │     ║
+║  │  Section 4: PSI Drift            → max_class_confidence PSI=0.1132      │     ║
+║  │  Section 5: Recent Predictions   → audit log · category · band · rule   │     ║
+║  │  Sidebar:   Live Screening       → paste resume+JD → instant decision   │     ║
+║  │                                                                         │     ║
+║  │  Simulator: 3 scenarios (strong · weak · random) → hits /predict API    │     ║
+║  └─────────────────────────────────────────────────────────────────────────┘     ║
 ╚══════════════════════════════════════════════════════════════════════════════════╝
 ```
 
@@ -580,7 +580,12 @@ Result: 31 passed · 3 skipped (fixture size < 50 guard — production code corr
 
 **Narendra Kalam** — MSc Computer Science (Gold Medalist — NASSCOM, Full Stack Data Science + AI)
 
-> Building 20+ industry-level, end-to-end ML systems.
+> Building 20+ industry-level, end-to-end ML systems targeting **30+ LPA** at top MNCs in India.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://www.linkedin.com/in/narendra-kalam/)
+[![Kaggle](https://img.shields.io/badge/Kaggle-Profile-20BEFF?logo=kaggle)](https://www.kaggle.com/narendrakalam)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-green?logo=github)](https://narendrakalam2001.github.io/)
+[![Email](https://img.shields.io/badge/Email-Contact-red?logo=gmail)](mailto:kalamnarendra2001@gmail.com)
 
 ### Portfolio Projects
 
