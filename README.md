@@ -240,7 +240,7 @@ resume-screener-ai/
 │   └── resume_screener_eda.ipynb     # Professional EDA — 25 steps · 52 cells
 │
 ├── data/
-│   └── sample_resumes.csv            # 5-row sample dataset for quick testing
+│   └── sample_resume_dataset.csv       # A representative balanced sample dataset is provided in quick testing
 │
 ├── resume_models/                    # Model artifacts — all files pushed to GitHub
 │   ├── latest_model.json             # Champion model registry
@@ -277,6 +277,10 @@ resume-screener-ai/
 ├── Dockerfile.dashboard              # Streamlit dashboard container
 ├── docker-compose.yml                # API + Dashboard (ports 8000 + 8501)
 ├── .github/workflows/ci.yml          # GitHub Actions — pytest on every push
+├── .gitignore
+├── .dockerignore
+├── LICENSE                           # MIT License
+├── README.md                         # This file
 ├── render.yaml                       # Render.com deployment config
 ├── requirements.txt                  # Full training requirements
 ├── requirements_api.txt              # Lean API-only requirements
@@ -302,7 +306,9 @@ Download [Kaggle Resume Dataset](https://www.kaggle.com/datasets/snehaanbhawal/r
 
 ```powershell
 # Windows PowerShell — set data path
-$env:RESUME_DATA_PATH = "data/Resume.csv"
+$env:RESUME_DATA_PATH = "data/sample_resume_dataset.csv"
+
+# A representative balanced sample dataset is provided in quick testing
 ```
 
 ### 3. Train Model
@@ -475,19 +481,57 @@ curl -X POST "http://localhost:8000/rank" \
 
 ## 📊 All 9 Models — Comparison Table
 
-| Model | Preprocessor | F1 Macro | Accuracy | Top-3 Acc | ROC-AUC | CV F1 |
-|---|---|---|---|---|---|---|
-| **LightGBM** ⭐ | Unscaled | **0.7608** | **0.8068** | 0.9416 | **0.9793** | 0.7110 |
-| XGBoost | Unscaled | 0.7539 | 0.7807 | **0.9477** | 0.9761 | 0.6963 |
-| RandomForest | Unscaled | 0.7276 | 0.7565 | 0.9256 | 0.9690 | 0.6619 |
-| LinearSVC | Scaled | 0.6358 | 0.6922 | 0.8974 | 0.9676 | 0.6153 |
-| ExtraTrees | Unscaled | 0.6329 | 0.6801 | 0.9155 | 0.9659 | 0.6400 |
-| LogisticRegression | Scaled | 0.6125 | 0.6539 | 0.8632 | 0.9572 | 0.5704 |
-| SGDClassifier | Scaled | 0.6017 | 0.6398 | 0.5694 | 0.8314 | 0.5709 |
-| ComplementNB | Unscaled | 0.4933 | 0.5795 | 0.8431 | 0.9522 | 0.5176 |
-| KNN | Scaled | 0.1145 | 0.1227 | 0.2455 | 0.5581 | 0.1103 |
+| Model | Preprocessor | F1 Macro | Accuracy | Precision | Recall | Top-3 Acc | ROC-AUC | CV F1 (std) |
+|---|---|---|---|---|---|---|---|---|
+| **LightGBM** ⭐ | Unscaled | **0.7608** | **0.8068** | 0.7881 | 0.7602 | 0.9416 | **0.9793** | 0.7110 (±0.0247) |
+| XGBoost | Unscaled | 0.7539 | 0.7807 | 0.7780 | 0.7537 | **0.9477** | 0.9761 | 0.6963 (±0.0304) |
+| RandomForest | Unscaled | 0.7276 | 0.7565 | 0.7941 | 0.7272 | 0.9256 | 0.9690 | 0.6619 (±0.0230) |
+| LinearSVC | Scaled | 0.6358 | 0.6922 | 0.6771 | 0.6454 | 0.8974 | 0.9676 | 0.6153 (±0.0158) |
+| ExtraTrees | Unscaled | 0.6329 | 0.6801 | 0.7044 | 0.6452 | 0.9155 | 0.9659 | 0.6400 (±0.0156) |
+| LogisticRegression | Scaled | 0.6125 | 0.6539 | 0.6464 | 0.6165 | 0.8632 | 0.9572 | 0.5704 (±0.0224) |
+| SGDClassifier | Scaled | 0.6017 | 0.6398 | 0.6195 | 0.6053 | 0.5694 | 0.8314 | 0.5709 (±0.0216) |
+| ComplementNB | Unscaled | 0.4933 | 0.5795 | 0.5680 | 0.5370 | 0.8431 | 0.9522 | 0.5176 (±0.0330) |
+| KNN | Scaled | 0.1145 | 0.1227 | 0.1138 | — | 0.2455 | 0.5581 | 0.1103 (±0.0135) |
+
+> Full comparison generated at training time in `resume_models/model_experiment_results.csv`
+> and visualised in `docs/reports/training_model_summary.png`.
 
 ---
+
+## 🔬 Per-Category Performance — LightGBM Champion (Test Set, n=497)
+
+| Category | Precision | Recall | F1 | Support |
+|---|---|---|---|---|
+| ACCOUNTANT | 0.80 | 1.00 | 0.89 | 24 |
+| ADVOCATE | 0.81 | 0.88 | 0.84 | 24 |
+| AGRICULTURE | 0.89 | 0.62 | 0.73 | 13 |
+| APPAREL | 0.79 | 0.58 | 0.67 | 19 |
+| ARTS | 0.59 | 0.48 | 0.53 | 21 |
+| AUTOMOBILE | 0.50 | 0.14 | 0.22 | 7 |
+| AVIATION | 0.86 | 0.83 | 0.84 | 23 |
+| BANKING | 0.79 | 0.65 | 0.71 | 23 |
+| BPO | 0.50 | 0.25 | 0.33 | 4 |
+| BUSINESS-DEVELOPMENT | 0.92 | 1.00 | 0.96 | 24 |
+| CHEF | 0.95 | 0.79 | 0.86 | 24 |
+| CONSTRUCTION | 0.88 | 0.95 | 0.91 | 22 |
+| CONSULTANT | 0.78 | 0.78 | 0.78 | 23 |
+| DESIGNER | 0.91 | 1.00 | 0.95 | 21 |
+| DIGITAL-MEDIA | 0.83 | 0.53 | 0.65 | 19 |
+| ENGINEERING | 0.81 | 0.92 | 0.86 | 24 |
+| FINANCE | 0.94 | 0.67 | 0.78 | 24 |
+| FITNESS | 0.81 | 0.88 | 0.84 | 24 |
+| HEALTHCARE | 0.77 | 0.87 | 0.82 | 23 |
+| HR | 0.95 | 0.95 | 0.95 | 22 |
+| INFORMATION-TECHNOLOGY | 0.74 | 0.96 | 0.84 | 24 |
+| PUBLIC-RELATIONS | 0.73 | 0.86 | 0.79 | 22 |
+| SALES | 0.71 | 0.87 | 0.78 | 23 |
+| TEACHER | 0.64 | 0.80 | 0.71 | 20 |
+| **Accuracy** | | | **0.81** | 497 |
+| **Macro avg** | 0.79 | 0.76 | 0.76 | 497 |
+| **Weighted avg** | 0.81 | 0.81 | 0.80 | 497 |
+
+> `AUTOMOBILE` (7 test samples) and `BPO` (4 test samples) have the lowest F1 — consistent with
+> being the most underrepresented categories, confirming the ethical-considerations note below.
 
 ## 📊 Business Impact
 
@@ -529,6 +573,16 @@ Business rules are evaluated **after** ML score — matching how real ATS platfo
 > **Why 3 tiers?** Binary screening (pass/fail) forces recruiters to manually review borderline candidates anyway.
 > The REVIEW band explicitly captures uncertainty — candidates the model is unsure about go to human review,
 > not the reject pile. This matches real underwriting logic used at Darwinbox and Workday.
+
+**Real run — Champion vs Challenger:**
+
+```
+CHAMPION vs CHALLENGER
+  Champion  : LightGBM   F1_macro=0.7608  Acc=0.8068
+  Challenger: LightGBM   F1_macro=0.7608  Acc=0.8068
+❌ CHALLENGER REJECTED — champion 'LightGBM' retained
+   Reason: Gates failed: F1 improvement +0.0000 < 0.005 | Train-test gap 0.1932 > 0.1
+```
 
 Results logged to `resume_models/challenger_log.json` and visible in the dashboard Section 2 with per-gate ✅/❌ status.
 
@@ -599,6 +653,11 @@ Result: 31 passed · 3 skipped (fixture size < 50 guard — production code corr
 | 6 | Energy Demand Forecasting | Energy / Utilities | ElasticNet | RMSE = 712.04 MW · R² = 0.9759 |
 | 7 | Stock Price & Risk Forecasting | Fintech / Capital Markets | Ridge | DirAcc = 53.44% · Sharpe = 0.80 |
 | 8 | **Resume Screener AI** | **HR Tech** | **LightGBM** | **F1 = 0.7608 · Top-3 = 0.9416** |
+| 9 | ABSA Sentiment Analysis | E-Commerce / Banking | RidgeClassifier | Macro-F1 = 0.6212 · ROC-AUC = 0.823 |
+| 10 | Fake News Detector | Media Tech / Gov Tech | XGBoost | F1 = 0.9993 · ROC = 1.0000 |
+| 11 | BC5CDR Clinical NER | Biomedical NLP | BioBERT | F1 = 0.8847 · Chemical F1 = 0.9239 |
+| 12 | News Topic Modeling | Media Analytics | LDA (Gensim) | Cv = 0.6225 · Diversity = 0.92 |
+| 13 | Chest X-Ray Diagnosis | Healthcare AI | DenseNet121 | Mean AUC = 0.7864 · 14 classes |
 
 ---
 
